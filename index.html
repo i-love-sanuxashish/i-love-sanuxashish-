@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sanu ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff477e;
+            --soft-pink: #fff0f3;
+            --dark-pink: #d81b60;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--soft-pink);
+            height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; text-align: center;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- Rose Petal Style --- */
+        .petal {
+            position: fixed;
+            top: -10px;
+            z-index: 150; 
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* --- Bouncing Text on Top --- */
+        .bg-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 99;
+            pointer-events: none;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .bg-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem; 
+            color: rgba(255, 71, 126, 0.2);
+            white-space: nowrap;
+            animation: bounceBG 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounceBG {
+            0% { transform: translate(-80px, -120px) rotate(-3deg); }
+            100% { transform: translate(80px, 120px) rotate(3deg); }
+        }
+
+        /* --- Card & Scroll Fix --- */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 25px; 
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 71, 126, 0.2);
+            max-width: 400px; 
+            width: 85%; 
+            max-height: 80vh; /* Mobile height limit */
+            overflow-y: auto; /* Enable scrolling for long text */
+            z-index: 10;
+            border: 2px solid rgba(255, 71, 126, 0.1);
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: scale(0.9);
+            scrollbar-width: none; /* Hide scrollbar for clean look */
+        }
+
+        .card::-webkit-scrollbar { display: none; } /* Chrome/Safari scrollbar hide */
+
+        .card.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .sticker-placeholder {
+            width: 150px; height: 150px;
+            margin: 0 auto 20px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 15px; 
+            overflow: hidden;
+            flex-shrink: 0; /* Prevents sticker from squishing */
+        }
+
+        .sticker-placeholder img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        h1 { font-family: 'Great Vibes', cursive; color: var(--primary-pink); font-size: 2.5rem; margin-top: 0; }
+        p { color: #555; font-size: 1.1rem; line-height: 1.6; }
+
+        .btn {
+            background: var(--primary-pink); color: white; border: none;
+            padding: 12px 30px; border-radius: 50px;
+            cursor: pointer; font-size: 1rem; font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.4);
+            transition: 0.3s;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        .btn:hover { background: var(--dark-pink); transform: translateY(-3px); }
+
+        /* --- Typing Effect Styling --- */
+        #typing-container {
+            text-align: left;
+            padding: 10px;
+        }
+        #typing-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem; 
+            color: var(--dark-pink);
+            line-height: 1.8;
+            display: inline;
+        }
+        .cursor { display: inline-block; width: 3px; background: var(--primary-pink); animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .tg-btn {
+            position: fixed; bottom: 25px; right: 25px;
+            background: #0088cc; color: white; padding: 10px 20px;
+            border-radius: 50px; text-decoration: none; font-size: 13px;
+            font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 102;
+        }
+        .dev-credit {
+            position: fixed; bottom: 12px; left: 50%;
+            transform: translateX(-50%); font-size: 13px;
+            color: var(--primary-pink); font-weight: bold; opacity: 0.8; z-index: 102;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-container">
+        <div class="bg-text">Ashish ❤️ sanu</div>
+    </div>
+
+    <audio id="myMusic" loop>
+        <source src="https://files.catbox.moe/0x6o8t.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card active" id="p1">
+        <div class="sticker-placeholder"><img src="https://image2url.com/r2/default/gifs/1770740706924-d35ccd34-b6ff-4783-8016-9faebd1a3364.gif"></div>
+        <h1>Hey Sanu...</h1>
+        <p>I have something hidden in my heart for a long time. Can I share it with you?</p>
+        <button class="btn" onclick="showP('p2')">Yes, Tell Me</button>
+    </div>
+
+    <div class="card" id="p2">
+        <div class="sticker-placeholder">
+            <img src="https://image2url.com/r2/default/gifs/1770741191093-4c108484-3d34-41fe-ad38-ca59c2ca3475.gif">
+        </div>
+        <h1>Promise Me?</h1>
+        <p>No matter what I say, promise me you will stay and listen to everything till the end?</p>
+        <button class="btn" onclick="startMusic()">I Promise ❤️</button>
+    </div>
+
+    <div class="card" id="p3">
+        <div class="sticker-placeholder"><img src="https://image2url.com/r2/default/gifs/1770791581917-0faaaf65-6a2f-4993-bca4-a7c4a216af69.gif"></div>
+        <h1>One Last Thing...</h1>
+        <p>Close your eyes for a second, feel the music, and then read what's coming next.</p>
+        <button class="btn" onclick="showP('p4')">I'm Ready</button>
+    </div>
+
+    <div class="card" id="p4">
+        <div id="typing-container">
+            <span id="typing-text"></span><span class="cursor">|</span>
+        </div>
+        <br>
+        <button id="final-btn" class="btn" style="opacity:0; pointer-events:none; transition: 0.5s;" onclick="showP('p5')">Click for Last Surprise 🎁</button>
+    </div>
+
+    <div class="card" id="p5">
+        <div class="sticker-placeholder"><img src="https://i.postimg.cc/9FxG8sLH/IMG-20260209-132957-557.jpg"></div>
+        <h1>Forever Yours ❤️</h1>
+        <p>I Love You more than words can ever express, Sanu. You are my today and all of my tomorrows.</p>
+        <p style="font-size: 0.8rem; color: #aaa;">- Ashish</p>
+        <br>
+        <button class="btn" style="background: #333;" onclick="restartAll()">Read Again ❤️</button>
+    </div>
+
+    <a href="https://t.me/Dr_ashi_ji" class="tg-btn" target="_blank">✈️ Dr ashi ji</a>
+    <div class="dev-credit">Developed by Ashish</div>
+
+    <script>
+        let i = 0;
+        const deepMsg = "Sanu, life was just a series of days before I met you, but now every moment feels like a melody. But honestly, my heart is a bit heavy today... I don't want to hide anything from you. Just like you feel bad when I talk to anyone else, I feel the same pain when you hide things from me. I have opened all my privacy to you, my everything belongs to you. But when you hide something, that fear becomes the reason for my doubts. Do you really think I would ever blackmail you? Sanu, I am that part of you who cries when you cry. Please don't comfort me with lies; I’d rather you make me cry with the truth, but please don't hide anything. I take out time for you even after being busy all day, maybe that's why you think I'm 'useless', but that time is my love for you. Why do you do things I don't like? Why do you ignore your health even after I stop you? ( Ek aur baat ) Many girls come near me, but my eyes only stop at you because this place only belongs to you and you are my wife. Just stay loyal with me, Sanu, and then see how far our love goes.... Hum tohse bahut pyaar karile Sanu, Hamar saath kabo na chhodiha, I love you so much! You are my home, my heart, and my forever... ❤️";
+
+        function showP(id) {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            const nextCard = document.getElementById(id);
+            nextCard.classList.add('active');
+            
+            if(id === 'p4') { 
+                document.getElementById("typing-text").innerHTML = "";
+                i = 0;
+                document.getElementById("final-btn").style.opacity = "0";
+                document.getElementById("final-btn").style.pointerEvents = "none";
+                setTimeout(startTyping, 500); 
+            }
+        }
+
+        function startMusic() {
+            document.getElementById("myMusic").play();
+            showP('p3');
+        }
+
+        function startTyping() {
+            if (i < deepMsg.length) {
+                document.getElementById("typing-text").innerHTML += deepMsg.charAt(i);
+                i++;
+                // Auto-scroll inside card while typing
+                const card = document.getElementById("p4");
+                card.scrollTop = card.scrollHeight;
+                setTimeout(startTyping, 50);
+            } else {
+                const fBtn = document.getElementById("final-btn");
+                fBtn.style.opacity = "1";
+                fBtn.style.pointerEvents = "auto";
+                const card = document.getElementById("p4");
+                card.scrollTop = card.scrollHeight;
+            }
+        }
+
+        function restartAll() {
+            i = 0;
+            showP('p1');
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.innerHTML = '🌹';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 3 + 3 + 's';
+            petal.style.opacity = Math.random() * 0.7 + 0.3;
+            petal.style.fontSize = Math.random() * 15 + 10 + 'px';
+            document.body.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 6000);
+        }
+        setInterval(createPetal, 400);
+
+    </script>
+</body>
+</html>
